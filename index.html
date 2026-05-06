@@ -135,25 +135,33 @@
 
 <script>
     function calcular() {
-        const robux = document.getElementById('robuxAmount').value;
-        const custoUnitario = 4.80 / 100;
+        const input = document.getElementById('robuxAmount');
+        const robux = parseFloat(input.value);
         
-        if (robux > 0) {
-
-            const custo = robux * custoUnitario;
-            
-            const precoVendaTotal = robux * - custo;
-
-            document.getElementById('custoLoja').innerText = `R$ ${custo.toFixed(2)}`;
-            document.getElementById('seuLucro').innerText = `R$ ${lucro.toFixed(2)}`;
-            document.getElementById('precoVenda').innerText = `R$ ${precoVendaTotal.toFixed(2)}`;
-        } else {
+        // Se não for um número ou estiver vazio, zera tudo
+        if (isNaN(robux) || robux <= 0) {
             document.getElementById('custoLoja').innerText = "R$ 0,00";
             document.getElementById('seuLucro').innerText = "R$ 0,00";
             document.getElementById('precoVenda').innerText = "R$ 0,00";
+            return;
         }
+
+        // 1. Quanto você paga (R$ 4,80 a cada 100)
+        const custo = (robux / 100) * 4.80;
+        
+        // 2. Por quanto você vende (Sugestão: R$ 5,80 a cada 100)
+        const precoVendaTotal = (robux / 100) * 5.80;
+        
+        // 3. Diferença entre venda e custo
+        const lucro = precoVendaTotal - custo;
+
+        // Atualiza a tela com os valores formatados
+        document.getElementById('custoLoja').innerText = "R$ " + custo.toLocaleString('pt-BR', {minimumFractionDigits: 2, maximumFractionDigits: 2});
+        document.getElementById('seuLucro').innerText = "R$ " + lucro.toLocaleString('pt-BR', {minimumFractionDigits: 2, maximumFractionDigits: 2});
+        document.getElementById('precoVenda').innerText = "R$ " + precoVendaTotal.toLocaleString('pt-BR', {minimumFractionDigits: 2, maximumFractionDigits: 2});
     }
 </script>
+    
 
 </body>
 </html>
