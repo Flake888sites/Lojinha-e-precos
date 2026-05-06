@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Calculadora de Robux | Loja do [Seu Nome]</title>
+    <title>Calculadora de Robux | Loja</title>
     <style>
         :root {
             --bg-color: #0b0e11;
@@ -121,7 +121,7 @@
             <span id="custoLoja">R$ 0,00</span>
         </div>
         <div class="result-item">
-            <span>Seu Lucro (Sugerido):</span>
+            <span>Seu Lucro:</span>
             <span id="seuLucro" style="color: #00ff88;">R$ 0,00</span>
         </div>
         <div class="result-item highlight">
@@ -130,22 +130,38 @@
         </div>
     </div>
 
-    <p class="footer-note">Cálculo baseado em R$ 4,80 por 100 Robux com Taxa Coberta.</p>
+    <p id="infoTaxa" class="footer-note">Cálculo baseado em R$ 4,80 por 100 Robux.</p>
 </div>
 
 <script>
-function c(){
-  var n = document.getElementByClass('input-group').value;
-  var custo = (n/100)*4.8;
-  var venda = (n/100)*5.8;
-  document.getElementById('custoLoja').innerHTML = custo.toFixed(2);
-  document.getElementById('seuLucro').innerHTML = venda.toFixed(2);
-  document.getElementById('precoVenda').innerHTML = (venda-custo).toFixed(2);
+function calcular() {
+    // Pega o valor do input pelo ID correto
+    var n = document.getElementById('robuxAmount').value;
+    
+    if (n > 0) {
+        // Define a taxa de venda baseada na quantidade
+        // Se passar de 5000, o preço por 100 robux é 5.30, senão é 5.80
+        var taxaVenda = (n > 5000) ? 5.30 : 5.80;
+        var taxaCusto = 4.80;
+
+        var custo = (n / 100) * taxaCusto;
+        var venda = (n / 100) * taxaVenda;
+        var lucro = venda - custo;
+
+        // Atualiza os valores na tela
+        document.getElementById('custoLoja').innerHTML = "R$ " + custo.toFixed(2);
+        document.getElementById('precoVenda').innerHTML = "R$ " + venda.toFixed(2);
+        document.getElementById('seuLucro').innerHTML = "R$ " + lucro.toFixed(2);
+        
+        // Atualiza a nota do rodapé para informar o desconto aplicado
+        document.getElementById('infoTaxa').innerHTML = "Taxa aplicada: R$ " + taxaVenda.toFixed(2) + " por 100 Robux.";
+    } else {
+        document.getElementById('custoLoja').innerHTML = "R$ 0,00";
+        document.getElementById('precoVenda').innerHTML = "R$ 0,00";
+        document.getElementById('seuLucro').innerHTML = "R$ 0,00";
+    }
 }
 </script>
-    
-
-    
 
 </body>
 </html>
