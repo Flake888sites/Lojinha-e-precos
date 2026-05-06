@@ -133,24 +133,18 @@
     <p class="footer-note">Cálculo baseado em R$ 4,80 por 100 Robux com Taxa Coberta.</p>
 </div>
 
-<input type="number" id="v" oninput="c()" placeholder="Robux">
-<p>Custo: <b id="r1">0</b></p>
-<p>Venda: <b id="r2">0</b></p>
-<p>Lucro: <b id="r3">0</b></p>
-
 <script>
 function c(){
-  var n = document.getElementById('v').value;
+  var n = document.getElementByClass('input-group').value;
   var custo = (n/100)*4.8;
   var venda = (n/100)*5.8;
-  document.getElementById('r1').innerHTML = custo.toFixed(2);
-  document.getElementById('r2').innerHTML = venda.toFixed(2);
-  document.getElementById('r3').innerHTML = (venda-custo).toFixed(2);
+  document.getElementById('custoLoja').innerHTML = custo.toFixed(2);
+  document.getElementById('seuLucro').innerHTML = venda.toFixed(2);
+  document.getElementById('precoVenda').innerHTML = (venda-custo).toFixed(2);
 }
 </script>
     
-    
-</script>
+
     
 
 </body>
