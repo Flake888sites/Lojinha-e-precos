@@ -135,32 +135,26 @@
 
 <script>
     function calcular() {
-        const input = document.getElementById('robuxAmount');
-        const robux = parseFloat(input.value);
+        // Pega o valor do input
+        var campoRobux = document.getElementById('robuxAmount');
+        var robux = parseFloat(campoRobux.value);
         
-        // Se não for um número ou estiver vazio, zera tudo
-        if (isNaN(robux) || robux <= 0) {
-            document.getElementById('custoLoja').innerText = "R$ 0,00";
-            document.getElementById('seuLucro').innerText = "R$ 0,00";
-            document.getElementById('precoVenda').innerText = "R$ 0,00";
-            return;
-        }
+        // Se o campo estiver vazio ou não for número, vira 0
+        if (!robux) { robux = 0; }
 
-        // 1. Quanto você paga (R$ 4,80 a cada 100)
-        const custo = (robux / 100) * 4.80;
-        
-        // 2. Por quanto você vende (Sugestão: R$ 5,80 a cada 100)
-        const precoVendaTotal = (robux / 100) * 5.80;
-        
-        // 3. Diferença entre venda e custo
-        const lucro = precoVendaTotal - custo;
+        // Faz as contas direto
+        var custo = (robux / 100) * 4.80;
+        var venda = (robux / 100) * 5.80;
+        var lucro = venda - custo;
 
-        // Atualiza a tela com os valores formatados
-        document.getElementById('custoLoja').innerText = "R$ " + custo.toLocaleString('pt-BR', {minimumFractionDigits: 2, maximumFractionDigits: 2});
-        document.getElementById('seuLucro').innerText = "R$ " + lucro.toLocaleString('pt-BR', {minimumFractionDigits: 2, maximumFractionDigits: 2});
-        document.getElementById('precoVenda').innerText = "R$ " + precoVendaTotal.toLocaleString('pt-BR', {minimumFractionDigits: 2, maximumFractionDigits: 2});
+        // Atualiza os textos na tela
+        // Usamos .toFixed(2) que é o jeito mais simples e seguro
+        document.getElementById('custoLoja').innerHTML = "R$ " + custo.toFixed(2).replace('.', ',');
+        document.getElementById('seuLucro').innerHTML = "R$ " + lucro.toFixed(2).replace('.', ',');
+        document.getElementById('precoVenda').innerHTML = "R$ " + venda.toFixed(2).replace('.', ',');
     }
 </script>
+    
     
 
 </body>
