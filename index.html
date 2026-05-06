@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora de Robux | Loja do [Seu Nome]</title>
+    <style>
+        :root {
+            --bg-color: #0b0e11;
+            --card-bg: #1a1d23;
+            --accent-color: #00a2ff;
+            --text-color: #ffffff;
+            --success-color: #00ff88;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .container {
+            background-color: var(--card-bg);
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
+            width: 90%;
+            max-width: 400px;
+            border: 1px solid #333;
+        }
+
+        h1 {
+            text-align: center;
+            color: var(--accent-color);
+            font-size: 1.5rem;
+            margin-bottom: 1.5rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .input-group {
+            margin-bottom: 1.5rem;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-size: 0.9rem;
+            color: #bbb;
+        }
+
+        input {
+            width: 100%;
+            padding: 12px;
+            border-radius: 8px;
+            border: 1px solid #444;
+            background-color: #252930;
+            color: white;
+            font-size: 1rem;
+            box-sizing: border-box;
+            outline: none;
+            transition: border 0.3s;
+        }
+
+        input:focus {
+            border-color: var(--accent-color);
+        }
+
+        .results {
+            background-color: #252930;
+            padding: 1rem;
+            border-radius: 8px;
+            margin-top: 1rem;
+        }
+
+        .result-item {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+            font-size: 0.95rem;
+        }
+
+        .result-item span:last-child {
+            font-weight: bold;
+            color: var(--success-color);
+        }
+
+        .highlight {
+            border-top: 1px solid #444;
+            padding-top: 10px;
+            margin-top: 10px;
+            font-size: 1.1rem !important;
+        }
+
+        .footer-note {
+            font-size: 0.7rem;
+            color: #666;
+            text-align: center;
+            margin-top: 1.5rem;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>Robux Store</h1>
+    
+    <div class="input-group">
+        <label for="robuxAmount">Quantidade de Robux para o cliente:</label>
+        <input type="number" id="robuxAmount" placeholder="Ex: 400" oninput="calcular()">
+    </div>
+
+    <div class="results">
+        <div class="result-item">
+            <span>Custo na Loja (R$):</span>
+            <span id="custoLoja">R$ 0,00</span>
+        </div>
+        <div class="result-item">
+            <span>Seu Lucro (Sugerido):</span>
+            <span id="seuLucro" style="color: #00ff88;">R$ 0,00</span>
+        </div>
+        <div class="result-item highlight">
+            <span>Preço de Venda:</span>
+            <span id="precoVenda" style="color: var(--accent-color);">R$ 0,00</span>
+        </div>
+    </div>
+
+    <p class="footer-note">Cálculo baseado em R$ 4,80 por 100 Robux com Taxa Coberta.</p>
+</div>
+
+<script>
+    function calcular() {
+        const robux = document.getElementById('robuxAmount').value;
+        const custoUnitario = 4.80 / 100;
+        
+        if (robux > 0) {
+
+            const custo = robux * custoUnitario;
+            
+            const precoVendaTotal = robux * - custo;
+
+            document.getElementById('custoLoja').innerText = `R$ ${custo.toFixed(2)}`;
+            document.getElementById('seuLucro').innerText = `R$ ${lucro.toFixed(2)}`;
+            document.getElementById('precoVenda').innerText = `R$ ${precoVendaTotal.toFixed(2)}`;
+        } else {
+            document.getElementById('custoLoja').innerText = "R$ 0,00";
+            document.getElementById('seuLucro').innerText = "R$ 0,00";
+            document.getElementById('precoVenda').innerText = "R$ 0,00";
+        }
+    }
+</script>
+
+</body>
+</html>
