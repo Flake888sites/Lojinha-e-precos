@@ -136,21 +136,19 @@
 <script>
     function c(){
   var n = document.getElementById('v').value;
-  var custo = (n/100)*4.8;
-  
-  // Define o preço por 100 baseado na quantidade
-  var precoUnitario = (n >= 5000) ? 5.3 : 5.8;
-  
-  var venda = (n/100) * precoUnitario;
-  
+  var p = 5.8; 
+
+  if (n >= 5000) { p = 5.3; }
+
+  var custo = (n/100) * 4.8;
+  var venda = (n/100) * p;
+
   document.getElementById('r1').innerHTML = custo.toFixed(2);
   document.getElementById('r2').innerHTML = venda.toFixed(2);
-  document.getElementById('r3').innerHTML = (venda-custo).toFixed(2);
+  document.getElementById('r3').innerHTML = (venda - custo).toFixed(2);
     }
     
 </script>
-    
-    
     
 
 </body>
