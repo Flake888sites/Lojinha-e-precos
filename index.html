@@ -134,25 +134,20 @@
 </div>
 
 <script>
-    function calcular() {
-        // Pega o valor do input
-        var campoRobux = document.getElementById('robuxAmount');
-        var robux = parseFloat(campoRobux.value);
-        
-        // Se o campo estiver vazio ou não for número, vira 0
-        if (!robux) { robux = 0; }
-
-        // Faz as contas direto
-        var custo = (robux / 100) * 4.80;
-        var venda = (robux / 100) * 5.80;
-        var lucro = venda - custo;
-
-        // Atualiza os textos na tela
-        // Usamos .toFixed(2) que é o jeito mais simples e seguro
-        document.getElementById('custoLoja').innerHTML = "R$ " + custo.toFixed(2).replace('.', ',');
-        document.getElementById('seuLucro').innerHTML = "R$ " + lucro.toFixed(2).replace('.', ',');
-        document.getElementById('precoVenda').innerHTML = "R$ " + venda.toFixed(2).replace('.', ',');
+    function c(){
+  var n = document.getElementById('v').value;
+  var custo = (n/100)*4.8;
+  
+  // Define o preço por 100 baseado na quantidade
+  var precoUnitario = (n >= 5000) ? 5.3 : 5.8;
+  
+  var venda = (n/100) * precoUnitario;
+  
+  document.getElementById('r1').innerHTML = custo.toFixed(2);
+  document.getElementById('r2').innerHTML = venda.toFixed(2);
+  document.getElementById('r3').innerHTML = (venda-custo).toFixed(2);
     }
+    
 </script>
     
     
